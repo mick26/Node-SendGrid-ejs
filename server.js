@@ -24,6 +24,8 @@ var path = require('path');
 var http = require('http');
 var colours = require('colors');
 var http = require('http');
+var bodyParser = require('body-parser');
+
 
 /* ========================================================== 
 Internal App Modules/Packages Required
@@ -51,10 +53,22 @@ app.set('view engine', 'ejs');
  */
 app.set("views", "./server/views"); 
 
+
+
+
+/* ========================================================== 
+serve the static index.html from the public folder
+============================================================ */
+app.use(express.static(__dirname + '/public')); 
+
+
 /*
- * log every request to the console
+ * Use Middleware
  */
-app.use(logger('dev')); 			
+app.use(logger('dev')); //log every request to the console		
+
+
+app.use(bodyParser.json());	//needed for req.body
 
 /* ========================================================== 
 authRoutes - using Express
