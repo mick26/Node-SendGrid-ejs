@@ -7,96 +7,27 @@ http://embed.plnkr.co/cYdAJh3uRfvOGG9mFLQd/preview
 
 <!DOCTYPE html>
 
-<html ng-app="myApp">
+<html lang="en" ng-app="myApp">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-	<title></title>
+	<title>Send An Email</title>
 	<!-- CSS -->
 	<link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
 	<!-- <link rel="stylesheet" href="bower_components/angular-material/default-theme.css"> -->
 	<link href="css/styles.css" rel="stylesheet">
-	<!-- <link href="css/formstyles.css" rel="stylesheet"> -->
 </head>
 
-<body ng-controller = "MainCtrl">
+<body>
 
-	<div class="container">
-	  
-		<h2>SendGrid E-mail Sender<small>Please complete an E-mail</small></h2>
-	  
-		<form name="emailForm" novalidate>
-	    
-		    <div class="group">      
-		      <input type="email" name="to" ng-model="email.to" required>
-		      <span class="highlight"></span>
-		      <span class="bar"></span>
-		      <label>To</label>
-		    </div>
-		      
-		    <div class="group">      
-		      <input type="email" name="from" ng-model="email.from" required>
-		      <span class="highlight"></span>
-		      <span class="bar"></span>
-		      <label>From</label>
-		    </div>
-		    
-		    <div class="group">      
-		      <input type="text" name="subject" ng-model="email.subject" required>
-		      <span class="highlight"></span>
-		      <span class="bar"></span>
-		      <label>Subject</label>
-		    </div>
-
-		    <div class="group ">      
-				<md-input-container>
-	        		<textarea ng-model="email.text" name="text" placeholder="Enter Text Here.." columns="1" md-maxlength="150" required></textarea>
-	      		</md-input-container>
-			</div>
-
-		    <md-button class="md-raised md-primary" ng-disabled="emailForm.$invalid" ng-click="submitEmail()">
-	  			Submit
-			</md-button>
-
-			<md-button class="md-raised md-primary" ng-disabled="emailForm.$invalid || inPreview" ng-click="previewEmail()">
-	  			Preview
-			</md-button>
-
-			<!-- Form Messages -->
-			<div ng-if="emailForm.$dirty">
-				<div ng-messages="emailForm.$error">
-				    <span ng-message="email" class="label-danger">You did not enter a correct email address</span>
-				    <span ng-message="required" class="label-danger">You did not enter a required field</span>
-				</div>
-			</div>
-
-
-		<!-- <div ng-messages = {{emailSubmitMessages}} class="my-messages"> -->
-
-		<!-- Messages -->
-		<div ng-messages = {{emailSubmitMessages}} >
-	  		<div ng-message="alert" class="some-message label-success">Message has been sent</div>
-	  		<div ng-message="fail" class="some-message label-danger">Unable to send message</div>
-		</div>
-
-		<div ng-messages = {{emailPreviewMessages}} >
-	  		<div ng-message="alert" class="some-message label-success">Preview Success!!</div>
-	  		<div ng-message="fail" class="some-message label-danger">Error getting preview!!</div>
-		</div>
-
-
-
-
-		</form>
-
-
-	</div>
-
+	<!-- Views will be rendered here -->
+	<div ng-view=""></div>
 
 	<!-- JS -->
 	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
 	<script src="bower_components/angular-messages/angular-messages.js"></script>
-
 	<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 	<script src="bower_components/angular-aria/angular-aria.js"></script>
 	<script src="bower_components/angular-animate/angular-animate.js"></script>

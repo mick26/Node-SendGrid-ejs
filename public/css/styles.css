@@ -6,25 +6,15 @@ https://gist.github.com/yarl/b3d4b4114d82c8bb041d
 * { box-sizing:border-box; }
 
 /* basic stylings ------------------------------------------ */
-body { background:url(http://scotch.io/wp-content/uploads/2014/07/61.jpg); }
-
-/*html { 
-  background: url(background:url(http://scotch.io/wp-content/uploads/2014/07/61.jpg) no-repeat center center fixed; 
+/*
+Background image taken from http://freeseamlesstextures.com/
+*/
+body { background-image:url("../assets/img/12-natural-stone-background-sml.jpg"); 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
-*/
-
-
-
-
-
-
-
-
-
 
 
 .container 		{ 
@@ -135,6 +125,7 @@ input.ng-invalid.ng-dirty {
     border-bottom:2px solid #DC4A3D;
     width:300px;
 }
+
 
 /*  
 RED LINE for textarea - indicating dirty & invalid 
