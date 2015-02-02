@@ -79,7 +79,7 @@ I have added two Protractor (Selenium Webdriver) tests.
 - Test 2: check preview button gets disabled when preview modal is open
 	- Open browser
 	- populate each field of the Form with valid entries
-	- click the preview button
+	- click the preview button to open modal window
 	- check that the preview button gets disabled
 
 
