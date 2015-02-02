@@ -21,7 +21,7 @@ This Repository uses the [SendGrid](https://sendgrid.com/) cloud E-mail delivery
 - Send will do the following: 
 	- send the completed email form to Node server 
 	- Node extracts the email
-	- Using RegEx Node replaces all '\n' characters with &lt;br/&gt
+	- Using RegEx Node replaces all '\n' characters with &lt;br/&gt;
 	- The messsage goes through ejs email template where extra formatting may be done
 	- The email is sent using SendGrid to the desired address
 	- Success/Failure message is sent back to client and rendered in the view 
