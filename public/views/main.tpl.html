@@ -32,11 +32,11 @@
       		</md-input-container>
 		</div>
 
-	    <md-button class="md-raised md-primary" ng-disabled="emailForm.$invalid" ng-click="submitEmail()">
+	    <md-button id="emailSubmitBn" class="md-raised md-primary" ng-disabled="emailForm.$invalid" ng-click="submitEmail()">
   			Submit
 		</md-button>
 
-		<md-button class="md-raised md-primary" ng-disabled="emailForm.$invalid || inPreview" ng-click="previewEmail()">
+		<md-button id="emailPreviewBn" class="md-raised md-primary" ng-disabled="emailForm.$invalid || inPreview" ng-click="previewEmail()">
   			Preview
 		</md-button>
 
