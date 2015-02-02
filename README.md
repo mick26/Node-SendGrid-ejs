@@ -72,11 +72,11 @@ This Repository uses the [SendGrid](https://sendgrid.com/) cloud E-mail delivery
 I have added two Protractor (Selenium Webdriver) tests.
 
 
-Test 1: check browser title
+- Test 1: check browser title
 	- Open browser
 	- check the title is "Send An Email"
 
-Test 2: check preview button gets disabled when preview modal is open
+- Test 2: check preview button gets disabled when preview modal is open
 	- Open browser
 	- populate each field of the Form with valid entries
 	- click the preview button
