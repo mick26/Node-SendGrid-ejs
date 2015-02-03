@@ -47,6 +47,11 @@ module.exports = {
 		 * Data that will be rendered in the ejs email template
 		 */
 		var emailText = req.body.text;
+
+		/**
+		 * Replace \n character with <br/>
+		 * so lines will be formatted properly in HTML
+		 */
 		emailText = emailText.replace(/(?:\r\n|\r|\n)/g, '<br />');
 
 		/**
@@ -116,11 +121,13 @@ module.exports = {
 		 * Send Email
 		 */
     	sendgrid.send(email, function(err, json) {
-		if (err) { 
-			return res.send("Problem Sending Email!!!!");
-	 	}
-			console.log(json);
-			res.send("Email Sent OK!!!!");
+			if (err) { 
+				return res.status(500).send("ERROR:Node Server unable to send Email using SendGrid()!!").end(); //Internal Server Error
+		 	}
+			else {
+				console.log(json);
+				res.status(200).send("SUCCESS:Email Sent from Node by SendGrid()!!").end(); //OK
+			}
 		});
 	}	
 };
