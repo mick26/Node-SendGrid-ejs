@@ -29,7 +29,7 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngAnimate', 'ngSanitize', 'my
       })
       
       .otherwise({
-        redirectTo: '/login'
+        redirectTo: '/'
       })
 
 });
