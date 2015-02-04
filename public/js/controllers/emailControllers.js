@@ -5,46 +5,81 @@ Module - for the Controllers
 angular.module('myApp.controllers', [])
 
 
-.controller('MainCtrl', function($scope, $log, emailService, $location, $sce, $rootScope, $mdDialog) {
+.controller('MainCtrl', function($scope, $log, emailService, $location, $sce, $rootScope, $mdDialog, $mdToast, $animate, $q) {
 
 	/**
 	 * Variables
 	 */
 	$scope.alert = '';
 	$rootScope.inPreview = false;
-	$scope.emptyFormObj = { email: {"to":"aaa@fff.io", "from":"bbbb@aa.io", "subject":"", "text":""} };
+	$scope.emptyFormObj = { email: {"to":'', "from":'', "subject":'', "text":''} };
 	$scope.setToPristine = false;
+	$scope.waitingForResponse = false;
 
 	/**
 	 * initialise values for ngMessages - error cancelled
 	 */
-	$scope.emailSubmitMessages = {
-		"success":0,
-		"fail":0
-	};
-
 	$scope.emailPreviewMessages = {
 		"success":0,
 		"fail":0
 	};
 
+
+	/**
+	* ng Material Toast
+	*/ 
+	$scope.toastPosition = {
+	    bottom: false,
+	    top: true,
+	    left: false,
+	    right: true
+  	};
+
+  	$scope.showSendSuccessToast = function() {
+	    $mdToast.show({
+	      controller: 'ToastCtrl',
+	      templateUrl: 'views/toastSendSuccess.tpl.html',
+	      hideDelay: 6000,
+	      position: $scope.getToastPosition()
+	    });
+	};
+
+  	$scope.showSendErrorToast = function() {
+	    $mdToast.show({
+	      controller: 'ToastCtrl',
+	      templateUrl: 'views/toastSendError.tpl.html',
+	      hideDelay: 6000,
+	      position: $scope.getToastPosition()
+	    });
+	};
+
+	$scope.getToastPosition = function() {
+    	return Object.keys($scope.toastPosition)
+      		.filter(function(pos) { return $scope.toastPosition[pos]; })
+      		.join(' ');
+  	};
+
+
 	$scope.submitEmail = function() {
+		$scope.waitingForResponse = true;
 		//Request
   		emailService.sendEmail($scope.email) 
 		//Response Handler #1
 	    .then(function(data) {
-	    	$log.info("Success sending Email" + data);
-	    	$scope.emailSubmitMessages = { "success":1, "fail": 0 };	
+	    	$log.info("Success sending Email MMMM" + data);
+			$scope.waitingForResponse = false;
+			$scope.showSendSuccessToast(); //show toast message
 	    },
 	    function(error) {
 	    	$log.error("Error sending E-mail" + error);
-	    	$scope.emailSubmitMessages = {"success":0, "fail": 1};	
+	    	$scope.waitingForResponse = false;
+			$scope.showSendErrorToast(); //show toast message
 	    });
-	    $log.info("$scope.emailPreviewMessages AAAA= "+JSON.stringify($scope.emailPreviewMessages));
 	};
 
 
 	$scope.previewEmail = function() {
+		$scope.waitingForResponse = true;
 		$rootScope.inPreview = true;
 
  		emailService.previewEmail($scope.email) 
@@ -54,46 +89,53 @@ angular.module('myApp.controllers', [])
 
 	    	$scope.rawHtml = $sce.trustAsHtml(html)
 
+/*	Works but no need for close button in template as clicking outside the modal will close it
+
+			    '    <md-button class="md-raised md-primary" ng-click="closeDialog()">' +
+			    '      Close Preview' +
+			    '    </md-button>' +
+*/ 
+
+
 			$mdDialog.show({
 			  template:
 				'<md-dialog>' + 
 			     $sce.trustAsHtml(html) +
 			    '  <div class="md-actions">' +
-			    '    <md-button class="md-raised md-primary" ng-click="closeDialog()">' +
-			    '      Close Preview' +
-			    '    </md-button>' +
 			    '  </div>' +
 			    '</md-dialog>',
 			    controller: 'PreviewCtrl'
 			})
-			$scope.emailPreviewMessages = { "success": 1, "fail":0 };
+			$scope.waitingForResponse = false;
 	    },
 	    function(error) {
 	    	$scope.emailPreviewMessages = {"success":0, "fail": 1};
+	    	$scope.waitingForResponse = false;
 	    });
     };
 
 
+    /**
+     * Clear the Form
+     * Have Issue with $setPristine()
+     * Have Issues with clearing the form
+     * This is a workaround but still not perfect
+     * I wrapped clearForm() in a promise and then called $setPristine
+     */
+   	var clearForm = function() {
+        var deferred = $q.defer();
+      	$scope.email = { "to":"", "from":"", "subject":"", "text":""};
+    	
+    	deferred.resolve("Form Emptied");          
+    	return deferred.promise;
+    };
 
-
-   	$scope.clearForm = function() {
-   		//For a future Clear button - 
-   		//Can clear the form fields but have an issue with $setPristine().
-		//$scope.myForm.myField.$pristine = false; 
-		/*
-		http://stackoverflow.com/questions/18071648/angular-js-programmatically-setting-a-form-field-to-dirty
-		$scope.myForm.myField.$setViewValue(...). Looks like the answer below stating that field.
-		$setDirty() was added in Angular 1.3.4 will be the better solution 
-		angular.forEach($scope.form.$error.required, function(field) {
-		    field.$setDirty();
-		});
-		*/
-		// if($scope.emailForm.$pristine == true) {
-			// $scope.emailForm = angular.copy($scope.emptyFormObj);
-			// angular.forEach($scope.emailForm.$error, function(field) {
-		 //    	field.$setDirty();
-			// });
-	}
+   	$scope.resetForm = function() {
+  		clearForm()					//returns a promise
+   		.then(function() {
+  			$scope.emailForm.$setPristine(true);
+   		})	
+	};
 })
 
 
@@ -102,9 +144,21 @@ angular.module('myApp.controllers', [])
  */
 .controller('PreviewCtrl', function($scope, $mdDialog, $rootScope) {
 	$rootScope.inPreview = true;
+	
 	$scope.closeDialog = function() {
     	// Hide most recent dialog
       	$mdDialog.hide();
+      	//$mdDialog.cancel();
       	$rootScope.inPreview = false;
     };
+})
+
+
+/**
+ * Controller - for Toast
+ */
+.controller('ToastCtrl', function($scope, $mdToast) {
+  $scope.closeToast = function() {
+    $mdToast.hide();
+  };
 });

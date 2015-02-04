@@ -6,6 +6,15 @@ Module - Main App Module
 angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngAnimate', 'ngSanitize', 'myApp.controllers', 
 	'ngMessages', 'myApp.emailServices'])
 
+/**
+ * Angular Material Themes to use
+ */
+.config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default');
+  $mdThemingProvider.theme('blue');
+})
+
+
 
 .config(function ($routeProvider, $locationProvider, $httpProvider) {
 
@@ -31,6 +40,5 @@ angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngAnimate', 'ngSanitize', 'my
       .otherwise({
         redirectTo: '/'
       })
-
 });
 
