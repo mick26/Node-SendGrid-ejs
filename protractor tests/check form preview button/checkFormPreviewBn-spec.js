@@ -1,5 +1,8 @@
 /*
 https://docs.angularjs.org/api/ng/directive/ngDisabled
+Populate E-mail for with valid date
+Click Preview button
+Check the button is not disabled
 */
 
 
@@ -14,8 +17,8 @@ describe('My E-mail App', function() {
     element(by.model('email.text')).sendKeys("Email Body Text!!!!");
     element(by.id("emailPreviewBn")).click();
 
-  	expect(element(by.id("emailPreviewBn")).getAttribute('disabled')).toBeTruthy();
-//  expect(element(by.id("emailPreviewBn")).getAttribute('disabled')).toBeFalsy();//For Testing gives a Fail
+ 	expect(element(by.id("emailPreviewBn")).getAttribute('disabled')).toBeFalsy();
+//  	expect(element(by.id("emailPreviewBn")).getAttribute('disabled')).toBeTruthy(); //For Testing gives a Fail
 
   });
 });

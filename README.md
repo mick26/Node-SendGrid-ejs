@@ -76,11 +76,11 @@ I have added two Protractor (Selenium Webdriver) tests.
 	- Open browser
 	- check the title is "Send An Email"
 
-- Test 2: check preview button gets disabled when preview modal is open
+- Test 2: check preview button remains enabled when preview modal is open
 	- Open browser
 	- populate each field of the Form with valid entries
 	- click the preview button to open modal window
-	- check that the preview button gets disabled
+	- check that the preview button does not get disabled
 
 
 
