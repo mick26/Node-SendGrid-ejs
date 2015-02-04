@@ -91,10 +91,17 @@ I have added two Protractor (Selenium Webdriver) tests.
 	<img width="80%" src="screen-shots/sc2-preview.png" alt="Email Preview" title="Email Preview"</img>
 </div>
 
+<div align="center">
+____Preview of Email____
+</div>
+
 <img width="0px" height="5px" </img>
 
 <div align="center">
 	<img width="80%" src="screen-shots/sc2-progress.png" alt="Progress Bar" title="Progress Bar"</img>
+</div>
+<div align="center">
+____Progress Bar when waiting for response____
 </div>
 
 <img width="0px" height="5px" </img>
@@ -102,11 +109,17 @@ I have added two Protractor (Selenium Webdriver) tests.
 <div align="center">
 	<img width="80%" src="screen-shots/sc2-responsive.png" alt="Fully Responsive" title="Fully Responsive"</img>
 </div>
+<div align="center">
+____Fully Responsive thanks to FlexGrid____
+</div>
 
 <img width="0px" height="5px" </img>
 
 <div align="center">
 	<img width="80%" src="screen-shots/sc2-toast.png" alt="Toast Messages" title="Toast Messages"</img>
+</div>
+<div align="center">
+____Toast Messages____
 </div>
 
 
