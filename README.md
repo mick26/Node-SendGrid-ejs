@@ -92,7 +92,7 @@ I have added two Protractor (Selenium Webdriver) tests.
 </div>
 
 <div align="center">
-____Preview of Email____
+__Preview of Email__
 </div>
 
 <img width="0px" height="5px" </img>
@@ -101,7 +101,7 @@ ____Preview of Email____
 	<img width="80%" src="screen-shots/sc2-progress.png" alt="Progress Bar" title="Progress Bar"</img>
 </div>
 <div align="center">
-____Progress Bar when waiting for response____
+__Progress Bar when waiting for response__
 </div>
 
 <img width="0px" height="5px" </img>
@@ -110,7 +110,7 @@ ____Progress Bar when waiting for response____
 	<img width="80%" src="screen-shots/sc2-responsive.png" alt="Fully Responsive" title="Fully Responsive"</img>
 </div>
 <div align="center">
-____Fully Responsive thanks to FlexGrid____
+__Fully Responsive thanks to FlexGrid__
 </div>
 
 <img width="0px" height="5px" </img>
@@ -119,7 +119,7 @@ ____Fully Responsive thanks to FlexGrid____
 	<img width="80%" src="screen-shots/sc2-toast.png" alt="Toast Messages" title="Toast Messages"</img>
 </div>
 <div align="center">
-____Toast Messages____
+__Toast Messages__
 </div>
 
 
