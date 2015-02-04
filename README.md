@@ -88,25 +88,25 @@ I have added two Protractor (Selenium Webdriver) tests.
 
 
 <div align="center">
-	<img width="80%" src="screen-shots/sc1.png" alt="Email Form" title="Email Form"</img>
+	<img width="80%" src="screen-shots/sc2-preview.png" alt="Email Preview" title="Email Preview"</img>
 </div>
 
 <img width="0px" height="5px" </img>
 
 <div align="center">
-	<img width="80%" src="screen-shots/sc2.png" alt="Create Email" title="Create Email"</img>
+	<img width="80%" src="screen-shots/sc2-progress.png" alt="Progress Bar" title="Progress Bar"</img>
 </div>
 
 <img width="0px" height="5px" </img>
 
 <div align="center">
-	<img width="80%" src="screen-shots/sc3.png" alt="Email Form" title="Email Form"</img>
+	<img width="80%" src="screen-shots/sc2-responsive.png" alt="Fully Responsive" title="Fully Responsive"</img>
 </div>
 
 <img width="0px" height="5px" </img>
 
 <div align="center">
-	<img width="80%" src="screen-shots/preview.png" alt="Create Email" title="Create Email"</img>
+	<img width="80%" src="screen-shots/sc2-toast.png" alt="Toast Messages" title="Toast Messages"</img>
 </div>
 
 
