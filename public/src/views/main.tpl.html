@@ -1,0 +1,146 @@
+
+<div class = "materialContainer">
+
+	<!--
+	Toolbar
+	-->
+	<md-toolbar>
+		<div class="md-toolbar-tools" layout="column" layout-align="center">
+			<!-- <span class="md-flex" layout="column" layout-align="center"> -->
+			<span class="md-flex">
+				<h2>Send an Email with SendGrid
+				</h2>
+			</span>
+		</div>
+	</md-toolbar>
+
+
+	<!--
+	row layout containing 3 flex boxes
+	-->
+	<div layout="row">
+
+		<!-- Flex Box 1 
+		Disappears on screens <600px wide (sm)
+		-->
+		<div flex hide-sm class="leftFlexbox">
+		</div>
+
+		<!-- Flex Box 2 
+		Containing our Form
+		-->
+		<div flex flex-gt-sm="75" flex-md="66" flex-gt-md="40">
+			<md-content layout="column" layout-align="center center" layout-margin layout-padding>
+				<div class="app-content">
+					<form name="emailForm" class="emailForm" novalidate>
+						<md-input-container>
+							<label>To</label>
+							<input type="email" name="to" class="long" ng-model="email.to" placeholder="Email Address.." ng-required="true" />
+							<md-tooltip>
+			          			Enter a valid Email Address
+			        		</md-tooltip>
+						
+			<!--
+			 				<div ng-if="emailForm.$dirty">
+				        		<div class="my-messages" ng-messages="emailForm.to.$error">
+				          			<span ng-message="required" class="some-message">Required field</span>
+				        		</div>
+				        	</div> 
+			-->
+						</md-input-container>
+
+						<md-input-container>
+							<label>From</label>
+							<input type="email" class="long" name="from" ng-model="email.from" placeholder="Email Address.." ng-required="true" />
+							<md-tooltip>
+			          			Enter a valid Email Address
+			        		</md-tooltip>
+			<!-- 
+			        		<div ng-if="emailForm.$dirty">
+				        		<div class="my-messages" ng-messages="emailForm.from.$error">
+				          			<div ng-message="required" class="some-message">Required field</div>
+				          			<!- <div ng-message="email" class="some-message">Please enter a valid Email address</div> ->
+				        		</div>
+				        	</div>
+			-->   	
+						</md-input-container>
+
+						<md-input-container>
+							<label>Subject</label>
+							<input type="text" name="subject" class="long" ng-model="email.subject" ng-required="true" />
+							<md-tooltip>
+			          			Enter Email subject text
+			        		</md-tooltip>
+
+			<!--
+			         		<div ng-if="emailForm.$dirty">
+				        		<div ng-messages="emailForm.subject.$error" class="my-messages">
+				          			<div ng-message="required" class="some-message">Required field</div>
+				        		</div>
+				        	</div> 
+			-->
+
+						</md-input-container>
+
+						<md-input-container>
+						  <label>Email Text</label>
+							<textarea ng-model="email.text" class="long" name="text" placeholder="Enter Text Here.." columns="1" md-maxlength="150" ng-required="true" flex></textarea>
+							<md-tooltip>
+			          			Enter text limit is 150 characters
+			        		</md-tooltip>
+
+
+			    		    <div ng-if="emailForm.$dirty">
+				        		<div ng-messages="emailForm.text.$error" class="my-messages">
+			<!-- 	          			<div ng-message="required" class="some-message">Required field</div> -->
+			 	          			<div ng-message="md-maxlength" class="some-message">Max of 150 characters</div>
+				        		</div>
+				        	</div>
+						</md-input-container>
+
+
+						<!--
+						Progress Bar 
+						-->
+						<md-progress-linear ng-if="waitingForResponse" md-theme="blue" md-mode="indeterminate" >
+						</md-progress-linear>
+
+						<div ng-show="!waitingForResponse">
+						    <md-button id="emailSubmitBn" class="md-raised md-primary" ng-disabled="emailForm.$invalid" ng-click="submitEmail()">
+					  			Submit
+							</md-button>
+
+							<md-button id="emailPreviewBn" class="md-raised md-primary md-hue-1" ng-disabled="emailForm.$invalid" ng-click="previewEmail()">
+					  			Preview
+							</md-button>
+
+							<md-button id="clearFormBn" type="reset" class="md-raised md-warn" ng-disabled ="emailForm.$pristine" ng-click="resetForm()">
+					  			Reset
+							</md-button>
+
+						</div>
+
+						<!--
+						Colours available are: md-primary, md-assent, md-warn, md-background
+						each having shades: md-hue-1, md-hue-2, md-hue-3  
+						-->
+						<!-- Messages -->	
+						<div ng-if="emailPreviewMessages.success">
+						  	<h3 class="some-message"><span class="label-success">Preview Success!!</span></h3>
+						</div>
+						<div ng-if="emailPreviewMessages.fail">
+						  	<h3 class="some-message"><span class="label-danger">Error getting preview!!</span></h3>
+						</div>
+					</form>	
+				</div>
+			</md-content>		  	
+		</div>
+
+
+		<!-- Flex Box 3 -->
+		<!-- Disappears on screens <600px wide (sm) -->
+		<div flex hide-sm class="rightFlexbox">
+		</div>
+
+	</div>
+</div>

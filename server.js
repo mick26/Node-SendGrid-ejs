@@ -1,6 +1,7 @@
 /* ========================================================== 
 Michael Cullen
-2015
+2015##
+
 
 Ref.
 https://github.com/tj/ejs/blob/master/examples/list.js
@@ -12,7 +13,13 @@ https://www.npmjs.com/package/dotenv
 https://sendgrid.com/docs/index.html
 https://github.com/sendgrid/sendgrid-nodejs-example
 https://sendgrid.com/blog/sendgrid-brings-email-deliverability-ibm-cloud-marketplace/
+
+http://stackoverflow.com/questions/4462478/jslint-is-suddenly-reporting-use-the-function-form-of-use-strict
+
+http://jshint.com/docs/
 ============================================================ */
+
+/*jshint globalstrict: true*/
 'use strict';
 
 /* ========================================================== 
@@ -20,9 +27,8 @@ External Modules/Packages Required
 ============================================================ */
 var express = require('express');
 var logger   = require('morgan'); //logger middleware
-var path = require('path');
 var http = require('http');
-var colours = require('colors');
+require('colors');
 var http = require('http');
 var bodyParser = require('body-parser');
 
@@ -59,7 +65,7 @@ app.set("views", "./server/views");
 /* ========================================================== 
 serve the static index.html from the public folder
 ============================================================ */
-app.use(express.static(__dirname + '/public')); 
+app.use(express.static(__dirname + '/public/dist')); 
 
 
 /*
