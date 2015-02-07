@@ -1,6 +1,6 @@
 ## SendGrid-Node-ejs
 
-This Repository uses the [SendGrid](https://sendgrid.com/) cloud E-mail delivery service, Nodejs and [ejs](https://github.com/tj/ejs) server side templating. 
+This Repository uses the [SendGrid](https://sendgrid.com/) cloud E-mail delivery service. 
 
 
 - Run the program and open browser
@@ -10,6 +10,7 @@ This Repository uses the [SendGrid](https://sendgrid.com/) cloud E-mail delivery
 - Complete the email form
 - Form validation is done by Angular
 - The __Submit__ and __Preview__ buttons only become active when the form is completed correctly
+
 - Preview will do the following: 
 	- send the completed email form to Node server
 	- Node extracts the email
@@ -35,10 +36,13 @@ This Repository uses the [SendGrid](https://sendgrid.com/) cloud E-mail delivery
 - [SendGrid](https://sendgrid.com/)
 - [ejs](https://github.com/tj/ejs) server side templating
 - [AngularJS](https://angularjs.org/)
-- [Angular Material](https://material.angularjs.org/#/) - new framework containing UI components
+- [Angular Material](https://material.angularjs.org/#/) - 
+new framework containing UI components
 - Angular-messages - form message handling (new to Angular 1.3x)
 - Angular-sanitize - used $sce service to allow raw html to be rendered in Angular
-
+- [Gulp](http://gulpjs.com/) streaming build system
+- [jshint](http://jshint.com/) javascript linter
+- [gulp-nodemon](https://www.npmjs.com/package/gulp-nodemon) nodemon wrapper for gulp that restarts the app
 
 ## Inspiration and Credits
 
@@ -48,6 +52,14 @@ This Repository uses the [SendGrid](https://sendgrid.com/) cloud E-mail delivery
 - Background image downloaded from [http://freeseamlesstextures.com/](http://freeseamlesstextures.com/)
 - The [Angular Material](https://material.angularjs.org/#/) form styling based on a tutorial from [scotch.io](https://scotch.io/).
 - [stackoverflow Answer](http://stackoverflow.com/questions/784539/how-do-i-replace-all-line-breaks-in-a-string-with-br-tags/784547#784547) - RegEx code to convert '\n' to &lt;br/&gt; (need to format line breaks in html)
+- [Gulp plumber](https://www.npmjs.com/package/gulp-plumber)
+- [smashingmagazine](http://www.smashingmagazine.com/2014/06/11/building-with-gulp/) - building with Gulp
+- [sitepoint Gulp intro](http://www.sitepoint.com/introduction-gulp-js/)
+- [gulp-nodemon](https://github.com/JacksonGariety/gulp-nodemon)
+- [justinmccandless blog on gulp](http://www.justinmccandless.com/blog/A+Tutorial+for+Getting+Started+with+Gulp)
+- [kycosoftware blog on gulp](http://www.kycosoftware.com/blog/article/simple-and-awesome-gulp-setup)
+- I got most of my jshint config file (.jshintrc) from this [leanpub Grunt book](https://leanpub.com/grunt/read)
+
 
 
 ## Usage
@@ -58,13 +70,79 @@ This Repository uses the [SendGrid](https://sendgrid.com/) cloud E-mail delivery
 - Open _.env_ and enter your SendGrid account credentials and save
 - _bower install_
 - _npm install_
-- _node server.js_
+- _gulp_
 - Browse to _http://localhost:8080/_
 - Enter Email details into the [Angular Material](https://material.angularjs.org/#/) form presented
 - Preview button will connect to Node server and return the output of the ejs template and render it as HTML in a Modal window 
 - The Submit button - sends Email to the _To_ Email address
 - Wait a while
 - You will get confirmation when the promise resolves
+
+
+
+
+## Gulp Streaming Build setup
+
+I have set up the following gulp tasks:
+
+- clean
+	- deletes _/dist/_ (including all sub directories)
+
+
+- _copy-html_
+	- get html files from _/src_ 
+	- streams to _/dist/_
+
+
+- _css_ (for all css files)
+	- gets css from _/src_ and _/lib_
+	- concatenates to app.css
+	- minifies it
+	- renames file to app.min.css
+	- streams to _/dist/css/_
+
+
+- _angular_ (for front end javascript)
+	- get js code
+	- pass through jshint linter
+	- concatenate to app.js
+	- Annotate (because I do not write Angular in the syntax required for minified code to be read)
+	- remove console and debugger statements
+	- minify
+	- rename to app.min.js
+	- stream to _/dest/js/_
+
+
+- _imagemin_
+	- read images from _/src/_
+	- minify (compress) images
+	- check if different to files on _/dist/_ if they exists
+	- stream to _/dist/img/_
+
+
+- _lib-scripts_ 
+	- read library javascript files from _/lib/_
+	- they are minified already
+	- concatenate to lib.min.js
+	- stream to _/dist/js/_
+
+
+- _lib-maps_ (needed to unminify) 
+	- read library map files from _/lib/_
+	- stream to _/dist/js/_
+
+
+- _watch_  
+	- specifies directories to look for file changes in
+	- run the task associated with the watch where the file change occurred
+
+
+- _nodemon_ (restarts node server) 
+	- runs node server.js to start node server
+	- monitors css, js, html files for changes
+	- on server start run tasks ['lib-scripts', 'lib-maps', 'angular', 
+	  'copy-html', 'css','imagemin']
+	- on file change run watch task
 
 
 ## End to End Testing
