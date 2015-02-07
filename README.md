@@ -113,6 +113,11 @@ I have set up the following gulp tasks:
 	- stream to _/dest/js/_
 
 
+- _node-scripts_ (for Node back-end javascript only)
+	- get js code
+	- pass through jshint linter
+
+
 - _imagemin_
 	- read images from _/src/_
 	- minify (compress) images
