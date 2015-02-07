@@ -118,7 +118,7 @@ I have set up the following gulp tasks:
 	- pass through jshint linter
 
 
-- _imagemin_
+- _imagemin_ (NOTE:this task no longer compresses image files as package _gulp-imagemin_ was breaking npm install)
 	- read images from _/src/_
 	- minify (compress) images
 	- check if different to files on _/dist/_ if they exists

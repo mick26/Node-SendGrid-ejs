@@ -21,7 +21,6 @@ https://leanpub.com/grunt/read
 // load the plugins
 var gulp       = require('gulp');
 var del        = require('del');
-//var clean      = require('gulp-clean');
 var minifyCSS  = require('gulp-minify-css');
 var rename     = require('gulp-rename');
 var jshint     = require('gulp-jshint');
@@ -29,7 +28,7 @@ var concat     = require('gulp-concat');
 var uglify     = require('gulp-uglify');
 var ngAnnotate = require('gulp-ng-annotate');
 var nodemon    = require('gulp-nodemon');
-var imagemin   = require('gulp-imagemin');
+//var imagemin   = require('gulp-imagemin');
 var beep       = require('beepbeep')
 var stripDebug = require('gulp-strip-debug');
 var gutil      = require('gulp-util');
@@ -193,7 +192,7 @@ gulp.task('angular', function() {
 gulp.task('imagemin', function() {
   gulp.src(paths.images, {cwd: bases.src})
   .pipe(changed(bases.dist + 'img/'))
-  .pipe(imagemin())
+ // .pipe(imagemin())
   .pipe(gulp.dest(bases.dist + 'img/'));
 });
 
