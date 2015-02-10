@@ -20,7 +20,9 @@ https://leanpub.com/grunt/read
 ================================================================= */
 // load the plugins
 var gulp       = require('gulp');
+var karma      = require('karma').server;
 var del        = require('del');
+//var clean      = require('gulp-clean');
 var minifyCSS  = require('gulp-minify-css');
 var rename     = require('gulp-rename');
 var jshint     = require('gulp-jshint');
@@ -259,6 +261,37 @@ gulp.task('nodemon', function() {
   });
 });
 
+
+
+/* ==========================================================
+GULP TASKS - Unit Testing with Karma
+========================================================== */
+/**
+ * Run test once and exit
+ */
+gulp.task('unit:test', function (done) {
+  karma.start({
+  configFile: __dirname + '/public/test/config/karma.conf.js',
+  singleRun: true
+  }, done);
+});
+
+/**
+* Watch for file changes and re-run tests on each change
+*/
+gulp.task('unit:tdd', function (done) {
+  karma.start({
+  configFile: __dirname + '/public/test/config/karma.conf.js'
+  }, done);
+});
+
+
+
+
+
+/**
+ * Default Task
+ */
 gulp.task('default', ['nodemon']);
 
 

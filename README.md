@@ -142,12 +142,40 @@ I have set up the following gulp tasks:
 	- run the task associated with the watch where the file change occurred
 
 
+- _unit:test_
+	- starts Karma test runner 
+	- runs through the unit tests once
+
+
+- _unit:tdd_
+	- starts Karma test runner 
+	- runs through the unit tests 
+	- runs the unit tests each time a file change is detected
+
+
 - _nodemon_ (restarts node server) 
 	- runs node server.js to start node server
 	- monitors css, js, html files for changes
 	- on server start run tasks ['lib-scripts', 'lib-maps', 'angular', 
 	  'copy-html', 'css','imagemin']
 	- on file change run watch task
+
+
+
+## Unit Testing
+
+I have added some unit tests created using the following tools:
+ 
+ - [Karma](http://karma-runner.github.io/0.12/index.html) test runner
+ - [Jasmine](http://jasmine.github.io/) test framework
+
+
+Two Gulp tasks are created that will run the unit tests:
+
+- __unit:test__ 
+- __unit:tdd__
+
+
 
 
 ## End to End Testing

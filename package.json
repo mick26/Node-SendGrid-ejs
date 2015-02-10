@@ -8,7 +8,7 @@
   },
   "author": "Michael Cullen",
   "license": "MIT",
-    "dependencies": {
+  "dependencies": {
     "body-parser": "^1.10.2",
     "colors": "^1.0.3",
     "dotenv": "^0.5.1",
@@ -36,6 +36,11 @@
     "gulp-uglify": "^1.1.0",
     "gulp-util": "^3.0.3",
     "gulp-watch": "^4.1.0",
-    "jshint-stylish": "^1.0.0"
+    "jasmine-core": "^2.2.0",
+    "jshint-stylish": "^1.0.0",
+    "karma": "^0.12.31",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-firefox-launcher": "^0.1.4",
+    "karma-jasmine": "^0.3.5"
   }
 }
