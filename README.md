@@ -176,7 +176,34 @@ Two Gulp tasks are created that will run the unit tests:
 - __unit:tdd__
 
 
+I installed a new reporter to provide a nice GUI for the test output.
+<pre>npm install karma-jasmine-reporter --save-dev</pre>
 
+To activate the new reporter GUI simply add 'html' to the reporters array in the [karma.conf](http://karma-runner.github.io/0.8/config/configuration-file.html) config file.
+
+Now run a test using:
+<pre>gulp unit:tdd</pre>
+
+When the browser opens click on the 'Debug' button and a new window will open displaying the test output. 
+
+
+<div align="center">
+	<img width="50%" src="screen-shots/app-spec.png" alt="Test Output" title="Test Output"</img>
+</div>
+
+<div align="center">
+	Test Output
+</div>
+
+<img width="0px" height="5px" </img>
+
+<div align="center">
+	<img width="50%" src="screen-shots/service-spec.png" alt="emailService Test Output" title="emailService Test Output"</img>
+</div>
+
+<div align="center">
+	emailService Test Output
+</div>
 
 ## End to End Testing
 
