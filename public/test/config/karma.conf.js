@@ -8,11 +8,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    //basePath : './',
-    //basePath: '..\..',
     basePath : '../..',
-
-
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -21,8 +17,6 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        // JASMINE,
-        // JASMINE_ADAPTER,
         'lib/angular/angular.js',
         'lib/angular-route/angular-route.js',
         'lib/angular-sanitize/angular-sanitize.js',
@@ -31,15 +25,14 @@ module.exports = function(config) {
         'src/js/appRoutes.js',
         'src/js/controllers/emailControllers.js',
         'src/js/services/emailServices.js',
-        'src/js/**/*.js',
+        //'src/js/**/*.js',
         'test/unit/app.spec.js',
-        'test/unit/controllers/emailControllers.spec.js'
-    ],
+        'test/unit/services/emailServices.spec.js'    ],
 
 
     // list of files to exclude
     exclude: [
-        'test/unit/services/emailServices.spec.js'
+    //    'test/unit/services/emailServices.spec.js'
     ],
 
 
@@ -52,7 +45,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'html'],
 
 
     // web server port

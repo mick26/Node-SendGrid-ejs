@@ -1,13 +1,18 @@
 {
+  "author": "Michael Cullen",
   "name": "Email-App",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "SendGrid Email App",
+  "license": "MIT",
+  "private":"true",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Michael Cullen",
-  "license": "MIT",
+  "repository": { 
+    "type" : "git", 
+    "url" : "https://github.com/mick26/Node-SendGrid-ejs"
+  },
   "dependencies": {
     "body-parser": "^1.10.2",
     "colors": "^1.0.3",

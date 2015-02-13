@@ -31,7 +31,7 @@ var uglify     = require('gulp-uglify');
 var ngAnnotate = require('gulp-ng-annotate');
 var nodemon    = require('gulp-nodemon');
 //var imagemin   = require('gulp-imagemin');
-var beep       = require('beepbeep')
+var beep       = require('beepbeep');
 var stripDebug = require('gulp-strip-debug');
 var gutil      = require('gulp-util');
 var plumber    = require('gulp-plumber'); //pipe error will not break gulp
@@ -69,18 +69,19 @@ var paths = {
   nodeScripts: ['server.js', 'server/**/*.js'], 
   lib: ['lib/angular/angular.min.js',
     'lib/angular-animate/angular-animate.min.js', 
-    'lib/angular-aria/angular-aria.min.js', 
     'lib/angular-material/angular-material.min.js',
     'lib/angular-messages/angular-messages.min.js',
     'lib/angular-route/angular-route.min.js',
     'lib/angular-sanitize/angular-sanitize.min.js',
+    'lib/angular-aria/angular-aria.min.js'
+
   ],
   libMap:[ 'lib/angular/angular.min.js.map', 
     'lib/angular-animate/angular-animate.min.js.map', 
-    'lib/angular-aria/angular-aria.min.js.map', 
+    'lib/angular-sanitize/angular-sanitize.min.js.map',
     'lib/angular-messages/angular-messages.min.js.map',
     'lib/angular-route/angular-route.min.js.map',
-    'lib/angular-sanitize/angular-sanitize.min.js.map'
+    'lib/angular-aria/angular-aria.min.js.map'
   ],
 
   libStyles: ['lib/angular-material/angular-material.css',
@@ -250,8 +251,8 @@ gulp.task('lib-maps', function() {
 gulp.task('nodemon', function() {
   nodemon({
     script: 'server.js',
-    ext: 'js html css',
-    env: { 'NODE_ENV': 'development' }
+    ext: 'js html css'
+    //env: { 'NODE_ENV': 'development' }
   })
   .on('start', ['lib-scripts', 'lib-maps', 'angular', 'copy-html', 
     'css','imagemin'])
