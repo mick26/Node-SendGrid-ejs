@@ -64,6 +64,9 @@ new framework containing UI components
 
 ## Usage
 
+- You need to have bower and gulp installed globally
+	- npm install -g bower
+	- npm install -g gulp
 - Open an account with [SendGrid](https://sendgrid.com/)
 - clone the repository
 - Copy _.env.example_ to _.env_
@@ -78,6 +81,11 @@ new framework containing UI components
 - Wait a while
 - You will get confirmation when the promise resolves
 
+
+
+Note:
+The Angular Material _textarea_ element works fine on Chrome, but only 2 lines are visible on Firefox.
+The issue is reported at: https://github.com/angular/material/issues/1156
 
 
 
@@ -186,7 +194,7 @@ Now run a test using:
 
 When the browser opens click on the 'Debug' button and a new window will open displaying the test output. 
 
-
+	 
 <div align="center">
 	<img width="50%" src="screen-shots/app-spec.png" alt="Test Output" title="Test Output"</img>
 </div>
@@ -204,6 +212,7 @@ When the browser opens click on the 'Debug' button and a new window will open di
 <div align="center">
 	emailService Test Output
 </div>
+
 
 ## End to End Testing
 
